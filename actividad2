@@ -1,0 +1,39 @@
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hola, soy un bot {bot.user}!, usa $ayuda si quieres que te ayude mostrando mis comandos')
+
+@bot.command()
+async def ayuda(ctx):
+    await ctx.send("tengo tres comandos $dato: sirve para darte un dato curioso, $video: te mostrare un video cool y $adicion: dame dos numeros y te dare la suma entre esos numeros")
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+@bot.command()  
+async def dato(ctx):
+    await ctx.send("Como promedio, el corazón late unas 3 mil millones de veces durante la vida de una persona.")
+
+@bot.command()
+async def video(ctx):
+    await ctx.send("este video se ve cool: https://www.youtube.com/watch?v=YhQ5Sra9DBs ")
+
+@bot.command()
+async def adicion(ctx, a:float,b:float):
+    resultado=a+b
+    await ctx.send(f"{resultado}")
+
+
+bot.run("MTI1MTkyODg4Mzg4NDcyMDIzMQ.G0FtDs.WczPib2-347D072SA_k61zPq4f6bXqQElz9Tu8")
